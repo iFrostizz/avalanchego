@@ -124,11 +124,12 @@ func NewCertAndKeyBytes() ([]byte, []byte, error) {
 	// Create self-signed staking cert
 	certTemplate := &x509.Certificate{
 		SerialNumber:          big.NewInt(0),
-		NotBefore:             time.Date(2000, time.January, 0, 0, 0, 0, 0, time.UTC),
+		NotBefore:             time.Date(2000, time.January, 1, 0, 0, 0, 0, time.UTC),
 		NotAfter:              time.Now().AddDate(100, 0, 0),
 		KeyUsage:              x509.KeyUsageDigitalSignature,
+		ExtKeyUsage:           []x509.ExtKeyUsage{x509.ExtKeyUsageServerAuth},
+		IsCA:                  true,
 		BasicConstraintsValid: true,
-		Version:               2,
 	}
 	certBytes, err := x509.CreateCertificate(rand.Reader, certTemplate, certTemplate, key.Public(), key)
 	if err != nil {
