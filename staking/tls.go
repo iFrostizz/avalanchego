@@ -128,6 +128,7 @@ func NewCertAndKeyBytes() ([]byte, []byte, error) {
 		NotAfter:              time.Now().AddDate(100, 0, 0),
 		KeyUsage:              x509.KeyUsageDigitalSignature,
 		BasicConstraintsValid: true,
+		Version:               2,
 	}
 	certBytes, err := x509.CreateCertificate(rand.Reader, certTemplate, certTemplate, key.Public(), key)
 	if err != nil {
