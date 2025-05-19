@@ -246,6 +246,10 @@ func (cr *ChainRouter) HandleInbound(ctx context.Context, msg message.InboundMes
 		msg.OnFinishedHandling()
 		return
 	}
+	
+	for k := range cr.chainHandlers {
+		fmt.Println(k)
+	}
 
 	// Get the chain, if it exists
 	chain, exists := cr.chainHandlers[chainID]
