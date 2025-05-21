@@ -247,6 +247,13 @@ func (cr *ChainRouter) HandleInbound(ctx context.Context, msg message.InboundMes
 		return
 	}
 
+	cr.log.Debug("gonna check keys")
+	for k := range cr.chainHandlers {
+		fmt.Println(k)
+		cr.log.Debug("key aaaaa", zap.Stringer("key", k))
+	}
+	cr.log.Debug("keys got!")
+
 	// Get the chain, if it exists
 	chain, exists := cr.chainHandlers[chainID]
 	if !exists {
