@@ -138,6 +138,7 @@ func (gh *getter) GetAcceptedStateSummary(ctx context.Context, nodeID ids.NodeID
 }
 
 func (gh *getter) GetAcceptedFrontier(ctx context.Context, nodeID ids.NodeID, requestID uint32) error {
+	gh.log.Debug("GetAcceptedFrontier message", zap.Stringer("nodeID", nodeID))
 	lastAccepted, err := gh.vm.LastAccepted(ctx)
 	if err != nil {
 		return err
