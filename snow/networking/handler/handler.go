@@ -558,6 +558,7 @@ func (h *handler) handleSyncMsg(ctx context.Context, msg Message) error {
 	// Bootstrapping messages may be forwarded to either avalanche or snowman
 	// engines, depending on the EngineType field
 	case *p2ppb.GetAcceptedFrontier:
+		h.ctx.Log.Debug("Received GetAcceptedFrontier message")
 		return engine.GetAcceptedFrontier(ctx, nodeID, msg.RequestId)
 
 	case *p2ppb.AcceptedFrontier:
